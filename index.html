@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Sanuu 💗</title>
+<title>For You MyLove💕</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
@@ -16,6 +16,7 @@ body{
   color:#4a2c3a;
   overflow:hidden;
 }
+
 section{
   position:absolute;
   inset:0;
@@ -25,82 +26,64 @@ section{
   align-items:center;
   padding:24px;
 }
-h1{
-  font-family:'Playfair Display',serif;
-  margin-bottom:18px;
-}
+
+h1{font-weight:500;margin-bottom:14px}
+
 button{
-  margin-top:26px;
-  padding:14px 32px;
+  margin-top:28px;
+  padding:14px 36px;
   border:none;
   border-radius:30px;
   background:#ff7aa2;
-  color:white;
+  color:#fff;
   font-size:1rem;
   cursor:pointer;
 }
-button:disabled{opacity:.5}
 
-/* ---------- CAKE ---------- */
-#cakeWrap{
-  width:320px;
-  height:260px;
+/* CAKE */
+#cakeArea{
   position:relative;
-}
-#slice{
-  transform-origin:160px 120px;
+  margin-top:16px;
 }
 
-/* sparkles */
-.sparkle{
+#cake{
+  width:240px;
+  cursor:pointer;
+}
+
+#slice{
   position:absolute;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
+  width:160px;
+  left:50%;
+  top:40%;
+  transform:translate(-50%,0) scale(0);
   opacity:0;
 }
 
-/* ---------- LETTER ---------- */
+/* CARD */
 #card{
   max-width:720px;
-  background:#fffdf8;
-  border-radius:28px;
-  padding:36px;
-  box-shadow:0 25px 80px rgba(0,0,0,.08);
+  background:#fff;
+  border-radius:26px;
+  padding:34px;
+  box-shadow:0 25px 70px rgba(0,0,0,.08);
 }
-#card h2{
-  font-family:'Playfair Display',serif;
-  color:#ff7aa2;
-  text-align:center;
-}
-#subtitle{
-  text-align:center;
-  opacity:.7;
-  margin:8px 0 22px;
-}
+
 #letter{
-  font-family:'Pacifico',cursive;
-  line-height:1.9;
-  font-size:1.05rem;
+  line-height:1.8;
+  font-size:1rem;
   white-space:pre-wrap;
 }
 
-/* ---------- FINAL PAGE ---------- */
+/* FINAL */
 #photo{
   width:260px;
   height:340px;
-  border-radius:24px;
+  border-radius:22px;
   background:url('her.jpg') center/cover no-repeat;
-  box-shadow:0 0 60px rgba(255,122,162,.45);
+  box-shadow:0 0 50px rgba(255,122,162,.4);
   opacity:0;
   transform:scale(.9);
-}
-#finalText{
-  max-width:740px;
-  text-align:center;
-  margin-top:26px;
-  line-height:1.85;
 }
 </style>
 </head>
@@ -111,151 +94,97 @@ button:disabled{opacity:.5}
 
 <!-- PAGE 1 -->
 <section id="page1">
-  <h1>For my Sanuu 💗</h1>
+  <h1 id="cakeText">Touch the cake to cut it 🎂</h1>
 
-  <div id="cakeWrap">
-    <svg viewBox="0 0 320 260">
-      <!-- shadow -->
-      <ellipse cx="160" cy="215" rx="95" ry="14" fill="rgba(0,0,0,0.12)"/>
-
-      <!-- cake side (depth) -->
-      <path d="M70 130 
-               Q160 165 250 130
-               L250 180
-               Q160 205 70 180 Z"
-            fill="#f6a9c0"/>
-
-      <!-- cake top -->
-      <ellipse cx="160" cy="130" rx="90" ry="45" fill="#ffd6e3"/>
-
-      <!-- cream ring -->
-      <ellipse cx="160" cy="125" rx="80" ry="38" fill="#fff"/>
-
-      <!-- cream drips -->
-      <path d="M80 130
-               Q95 150 110 130
-               Q125 150 140 130
-               Q155 150 170 130
-               Q185 150 200 130
-               Q215 150 230 130"
-            stroke="#fff" stroke-width="10" fill="none"/>
-
-      <!-- slice -->
-      <g id="slice">
-        <path d="M160 130
-                 L210 95
-                 Q220 90 225 100
-                 L190 190
-                 Q175 195 160 190 Z"
-              fill="#ffb3c7"/>
-        <path d="M160 150
-                 L200 125
-                 L190 150 Z"
-              fill="#fff"/>
-      </g>
-
-      <!-- strawberries -->
-      <circle cx="135" cy="95" r="6" fill="#ff4d6d"/>
-      <circle cx="160" cy="88" r="6" fill="#ff4d6d"/>
-      <circle cx="185" cy="95" r="6" fill="#ff4d6d"/>
-    </svg>
+  <div id="cakeArea">
+    <img id="cake" src="cake.png">
+    <img id="slice" src="slice.png">
   </div>
 
-  <button id="cutBtn">Cut the cake 🎂</button>
+  <button id="continue1" style="display:none">Continue 😝</button>
 </section>
 
 <!-- PAGE 2 -->
 <section id="page2" style="display:none">
   <div id="card">
-    <h2>A Birthday Love Letter 💌</h2>
-    <div id="subtitle">From my heart to my Sanuu</div>
+    <h1>A Birthday Love Letter 💌</h1>
     <div id="letter"></div>
+    <button id="toFinal">A special message for you💋</button>
   </div>
 </section>
 
 <!-- PAGE 3 -->
 <section id="page3" style="display:none">
-  <h1>Happy Birthday, Sanuu 💕</h1>
-  <div id="photo"></div>
-  <div id="finalText">
-    Today is a celebration of you —  
+  <h1>Happy Birthday Sonika💕
+Today is a celebration of you —  
     your kindness, your warmth, your beautiful soul.
 
     You have a way of making life softer just by being in it.
     Your smile feels like comfort, and your presence feels like home.
 
     I hope this year gives you peace, joy, and moments
-    that remind you how deeply you are loved.
+    that reminds you how deeply you are loved.
 
     <strong>16th February</strong> will always matter to me,
-    because it’s the day my Sanuu was born 🤍
-  </div>
+    because it’s the day my Sanuu was born 🤍</h1>
+  <div id="photo"></div>
 </section>
 
 <script>
-const cutBtn=document.getElementById('cutBtn');
-const music=document.getElementById('music');
+const cake = document.getElementById('cake');
+const slice = document.getElementById('slice');
+const text = document.getElementById('cakeText');
+const cont1 = document.getElementById('continue1');
+const music = document.getElementById('music');
 
-cutBtn.onclick=()=>{
-  cutBtn.disabled=true;
-  music.volume=0.4;
+cake.onclick = () => {
+  cake.onclick = null;
+  music.volume = 0.4;
   music.play();
 
-  gsap.to('#slice',{
-    x:34,
-    y:-12,
-    rotation:-6,
-    duration:2.8,
+  gsap.to(cake,{scale:0.95,duration:.3,yoyo:true,repeat:1});
+  gsap.to(slice,{
+    y:-20,
+    x:80,
+    scale:1,
+    opacity:1,
+    duration:1.6,
     ease:'power2.out'
   });
 
-  for(let i=0;i<16;i++){
-    const s=document.createElement('div');
-    s.className='sparkle';
-    document.body.appendChild(s);
-    gsap.set(s,{x:innerWidth/2,y:innerHeight/2});
-    gsap.to(s,{
-      x:'+='+(Math.random()*200-100),
-      y:'+='+(Math.random()*200-100),
-      opacity:1,
-      duration:1,
-      yoyo:true,
-      repeat:1
-    });
-  }
-
-  setTimeout(()=>{
-    page1.style.display='none';
-    page2.style.display='flex';
-    typeLetter();
-  },3000);
+  text.textContent = "Perfect cut 💗";
+  cont1.style.display = "block";
 };
 
-const text=`My dearest Sanuu,
+cont1.onclick = () => {
+  page1.style.display='none';
+  page2.style.display='flex';
+  typeLetter();
+};
+
+const letterText=`My Beautiful Sonika😭,
 
 Another year of your beautiful existence begins today,
 and I feel lucky that I get to celebrate you.
 
-You bring warmth into my life in ways you don’t even realize.
-Your presence makes ordinary moments feel special,
-and loving you feels effortless and real.`;
+You make life softer just by being in it.
+Loving you feels natural, warm, and real.
+MOMMY😭`;
 
 let i=0;
 function typeLetter(){
   const el=document.getElementById('letter');
   const t=setInterval(()=>{
-    el.textContent+=text[i];
-    i++;
-    if(i>=text.length){
-      clearInterval(t);
-      setTimeout(()=>{
-        page2.style.display='none';
-        page3.style.display='flex';
-        gsap.to('#photo',{opacity:1,scale:1,duration:2});
-      },2200);
-    }
+    el.textContent+=letterText[i++];
+    if(i>=letterText.length) clearInterval(t);
   },40);
 }
+
+document.getElementById('toFinal').onclick=()=>{
+  page2.style.display='none';
+  page3.style.display='flex';
+  gsap.to('#photo',{opacity:1,scale:1,duration:2});
+};
 </script>
 
 </body>
