@@ -40,17 +40,24 @@ button{
   cursor:pointer;
 }
 
+/* ---------- PAGE 1 DECOR ---------- */
+.sticker{
+  position:absolute;
+  width:90px;
+  opacity:.9;
+  animation:float 4s ease-in-out infinite;
+}
+.sticker.one{top:10%;left:8%}
+.sticker.two{bottom:12%;right:10%;animation-delay:1.5s}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
 /* CAKE */
-#cakeArea{
-  position:relative;
-  margin-top:16px;
-}
-
-#cake{
-  width:240px;
-  cursor:pointer;
-}
-
+#cakeArea{position:relative;margin-top:16px}
+#cake{width:240px;cursor:pointer}
 #slice{
   position:absolute;
   width:160px;
@@ -85,6 +92,14 @@ button{
   opacity:0;
   transform:scale(.9);
 }
+
+#finalText{
+  max-width:720px;
+  margin-top:22px;
+  text-align:center;
+  line-height:1.9;
+  font-size:.95rem;
+}
 </style>
 </head>
 
@@ -94,6 +109,9 @@ button{
 
 <!-- PAGE 1 -->
 <section id="page1">
+  <img src="kitty1.png" class="sticker one">
+  <img src="kitty2.png" class="sticker two">
+
   <h1 id="cakeText">Touch the cake to cut it 🎂</h1>
 
   <div id="cakeArea">
@@ -109,54 +127,50 @@ button{
   <div id="card">
     <h1>A Birthday Love Letter 💌</h1>
     <div id="letter"></div>
-    <button id="toFinal">A special message for you💋</button>
+    <button id="toFinal" style="display:none">A special message for you💋</button>
   </div>
 </section>
 
 <!-- PAGE 3 -->
 <section id="page3" style="display:none">
-  <h1>Happy Birthday Sonika💕
-Today is a celebration of you —  
-    your kindness, your warmth, your beautiful soul.
-
-    You have a way of making life softer just by being in it.
-    Your smile feels like comfort, and your presence feels like home.
-
-    I hope this year gives you peace, joy, and moments
-    that reminds you how deeply you are loved.
-
-    <strong>16th February</strong> will always matter to me,
-    because it’s the day my Sanuu was born 🤍</h1>
+  <h1>Happy Birthday Sonika💕</h1>
   <div id="photo"></div>
+  <div id="finalText">
+    Today isn’t just your birthday,  
+    it’s a reminder of how special you are to me.
+
+    Your smile heals, your voice comforts,
+    and your presence makes everything feel right.
+
+    I hope this year brings you happiness,
+    peace, and love that feels as deep as mine for you.
+
+    Always remember —  
+    you are deeply loved, endlessly cherished,  
+    and forever my Sanuu 💗
+  </div>
 </section>
 
 <script>
-const cake = document.getElementById('cake');
-const slice = document.getElementById('slice');
-const text = document.getElementById('cakeText');
-const cont1 = document.getElementById('continue1');
-const music = document.getElementById('music');
+const cake=document.getElementById('cake');
+const slice=document.getElementById('slice');
+const text=document.getElementById('cakeText');
+const cont1=document.getElementById('continue1');
+const music=document.getElementById('music');
 
-cake.onclick = () => {
-  cake.onclick = null;
-  music.volume = 0.4;
+cake.onclick=()=>{
+  cake.onclick=null;
+  music.volume=0.4;
   music.play();
 
   gsap.to(cake,{scale:0.95,duration:.3,yoyo:true,repeat:1});
-  gsap.to(slice,{
-    y:-20,
-    x:80,
-    scale:1,
-    opacity:1,
-    duration:1.6,
-    ease:'power2.out'
-  });
+  gsap.to(slice,{y:-20,x:80,scale:1,opacity:1,duration:1.6,ease:'power2.out'});
 
-  text.textContent = "Perfect cut 💗";
-  cont1.style.display = "block";
+  text.textContent="Perfect cut 💗";
+  cont1.style.display="block";
 };
 
-cont1.onclick = () => {
+cont1.onclick=()=>{
   page1.style.display='none';
   page2.style.display='flex';
   typeLetter();
@@ -169,14 +183,20 @@ and I feel lucky that I get to celebrate you.
 
 You make life softer just by being in it.
 Loving you feels natural, warm, and real.
+
 MOMMY😭`;
 
 let i=0;
 function typeLetter(){
   const el=document.getElementById('letter');
+  const btn=document.getElementById('toFinal');
   const t=setInterval(()=>{
     el.textContent+=letterText[i++];
-    if(i>=letterText.length) clearInterval(t);
+    if(i>=letterText.length){
+      clearInterval(t);
+      btn.style.display='block';
+      gsap.from(btn,{opacity:0,y:10,duration:.6});
+    }
   },40);
 }
 
@@ -189,3 +209,4 @@ document.getElementById('toFinal').onclick=()=>{
 
 </body>
 </html>
+
