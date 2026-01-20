@@ -11,12 +11,33 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  background:linear-gradient(180deg,#ffe4ef,#fff);
+  background:linear-gradient(180deg,#ffe0ec,#fff);
   font-family:'Poppins',sans-serif;
   color:#4a2c3a;
   overflow:hidden;
 }
 
+/* ---------- FLOATING BACKGROUND ---------- */
+.bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+}
+.bg span{
+  position:absolute;
+  width:22px;
+  height:22px;
+  background:url('heart.png') center/contain no-repeat;
+  opacity:.15;
+  animation:floatBg 18s linear infinite;
+}
+@keyframes floatBg{
+  from{transform:translateY(110vh)}
+  to{transform:translateY(-20vh)}
+}
+
+/* ---------- SECTIONS ---------- */
 section{
   position:absolute;
   inset:0;
@@ -25,6 +46,7 @@ section{
   justify-content:center;
   align-items:center;
   padding:24px;
+  text-align:center;
 }
 
 h1{font-weight:500;margin-bottom:14px}
@@ -44,19 +66,24 @@ button{
 .sticker{
   position:absolute;
   width:90px;
-  opacity:.9;
   animation:float 4s ease-in-out infinite;
 }
-.sticker.one{top:10%;left:8%}
-.sticker.two{bottom:12%;right:10%;animation-delay:1.5s}
+.sticker.one{top:8%;left:6%}
+.sticker.two{bottom:10%;right:6%;animation-delay:1.5s}
 
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
+  50%{transform:translateY(-14px)}
 }
 
 /* CAKE */
-#cakeArea{position:relative;margin-top:16px}
+#cakeArea{
+  position:relative;
+  margin-top:18px;
+  padding:18px;
+  border-radius:30px;
+  box-shadow:0 0 40px rgba(255,122,162,.35);
+}
 #cake{width:240px;cursor:pointer}
 #slice{
   position:absolute;
@@ -67,36 +94,33 @@ button{
   opacity:0;
 }
 
-/* CARD */
+/* ---------- CARD ---------- */
 #card{
   max-width:720px;
   background:#fff;
   border-radius:26px;
   padding:34px;
-  box-shadow:0 25px 70px rgba(0,0,0,.08);
+  box-shadow:0 25px 80px rgba(255,122,162,.25);
 }
-
 #letter{
-  line-height:1.8;
+  line-height:1.9;
   font-size:1rem;
   white-space:pre-wrap;
 }
 
-/* FINAL */
+/* ---------- FINAL ---------- */
 #photo{
   width:260px;
   height:340px;
   border-radius:22px;
   background:url('her.jpg') center/cover no-repeat;
-  box-shadow:0 0 50px rgba(255,122,162,.4);
+  box-shadow:0 0 60px rgba(255,122,162,.45);
   opacity:0;
   transform:scale(.9);
 }
-
 #finalText{
   max-width:720px;
   margin-top:22px;
-  text-align:center;
   line-height:1.9;
   font-size:.95rem;
 }
@@ -104,6 +128,14 @@ button{
 </head>
 
 <body>
+
+<div class="bg">
+  <span style="left:10%"></span>
+  <span style="left:30%"></span>
+  <span style="left:50%"></span>
+  <span style="left:70%"></span>
+  <span style="left:90%"></span>
+</div>
 
 <audio id="music" src="music.mp3" loop></audio>
 
@@ -136,46 +168,87 @@ button{
   <h1>Happy Birthday Sonika💕</h1>
   <div id="photo"></div>
   <div id="finalText">
-    Today isn’t just your birthday,  
-    it’s a reminder of how special you are to me.
+    Today is not just your birthday —  
+    it’s the day my world became brighter.
 
-    Your smile heals, your voice comforts,
-    and your presence makes everything feel right.
+    Your smile heals me,
+    your voice comforts me,
+    and your love feels like home.
 
-    I hope this year brings you happiness,
-    peace, and love that feels as deep as mine for you.
+    I hope this year brings you peace,
+    happiness, and moments that make you feel
+    as special as you truly are.
 
-    Always remember —  
-    you are deeply loved, endlessly cherished,  
-    and forever my Sanuu 💗
+    Forever my Sanuu,
+    forever my Mommy 😭💗
   </div>
 </section>
 
 <script>
-const cake=document.getElementById('cake');
-const slice=document.getElementById('slice');
-const text=document.getElementById('cakeText');
-const cont1=document.getElementById('continue1');
-const music=document.getElementById('music');
+const cake = document.getElementById('cake');
+const slice = document.getElementById('slice');
+const text = document.getElementById('cakeText');
+const cont1 = document.getElementById('continue1');
+const music = document.getElementById('music');
 
-cake.onclick=()=>{
-  cake.onclick=null;
-  music.volume=0.4;
+music.volume = 0;
+
+// ---------- PAGE 1 INTRO ----------
+gsap.from('#cakeArea',{y:20,opacity:0,duration:1.2,ease:'power2.out'});
+gsap.from('#cakeText',{opacity:0,y:-10,duration:1,delay:.3});
+
+// ---------- CAKE CUT ----------
+cake.onclick = () => {
+  cake.onclick = null;
+
   music.play();
+  gsap.to(music,{volume:.4,duration:2});
 
-  gsap.to(cake,{scale:0.95,duration:.3,yoyo:true,repeat:1});
-  gsap.to(slice,{y:-20,x:80,scale:1,opacity:1,duration:1.6,ease:'power2.out'});
+  gsap.to(cake,{scale:.95,duration:.3,yoyo:true,repeat:1});
+  gsap.to(slice,{
+    y:-20,x:80,scale:1,opacity:1,
+    duration:1.6,ease:'power2.out'
+  });
+
+  // sparkle burst
+  for(let i=0;i<14;i++){
+    const s=document.createElement('div');
+    s.style.position='absolute';
+    s.style.width='6px';
+    s.style.height='6px';
+    s.style.borderRadius='50%';
+    s.style.background='white';
+    s.style.left='50%';
+    s.style.top='50%';
+    document.body.appendChild(s);
+
+    gsap.fromTo(s,
+      {x:0,y:0,opacity:1},
+      {
+        x:Math.random()*200-100,
+        y:Math.random()*200-100,
+        opacity:0,
+        duration:1.2,
+        onComplete:()=>s.remove()
+      }
+    );
+  }
 
   text.textContent="Perfect cut 💗";
   cont1.style.display="block";
+  gsap.from(cont1,{opacity:0,scale:.8,duration:.5});
 };
 
+// ---------- PAGE 1 → 2 ----------
 cont1.onclick=()=>{
+  gsap.to(music,{volume:.25,duration:1});
   page1.style.display='none';
   page2.style.display='flex';
+  gsap.from('#card',{y:20,opacity:0,duration:1});
   typeLetter();
 };
 
+// ---------- LETTER ----------
 const letterText=`My Beautiful Sonika😭,
 
 Another year of your beautiful existence begins today,
@@ -195,18 +268,22 @@ function typeLetter(){
     if(i>=letterText.length){
       clearInterval(t);
       btn.style.display='block';
-      gsap.from(btn,{opacity:0,y:10,duration:.6});
+      gsap.from(btn,{scale:.9,opacity:0,duration:.6,ease:'elastic.out(1,0.6)'});
     }
   },40);
 }
 
+// ---------- PAGE 2 → 3 ----------
 document.getElementById('toFinal').onclick=()=>{
+  gsap.to(music,{volume:.35,duration:1});
   page2.style.display='none';
   page3.style.display='flex';
-  gsap.to('#photo',{opacity:1,scale:1,duration:2});
+
+  gsap.to('#photo',{opacity:1,scale:1,duration:2,ease:'power2.out'});
+  gsap.from('#finalText',{opacity:0,y:20,duration:1.2,delay:.6});
 };
-</script>
+  </script>
+  
 
 </body>
 </html>
-
