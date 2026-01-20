@@ -1,202 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Sanuu 🎀</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sanuu 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#ffe4ec,#fff);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.page{display:none;min-height:100vh;padding:30px;text-align:center}
+.page.active{display:block}
+h1{font-family:'Pacifico';color:#ff5fa2;margin-bottom:16px}
+p{color:#555}
+button{
+  padding:14px 28px;
+  border:none;border-radius:30px;
+  background:#ff5fa2;color:#fff;
+  font-size:16px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(255,95,162,.4)
+}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+/* cats */
+.cats{position:fixed;inset:0;pointer-events:none;z-index:1}
+.cat{position:absolute;font-size:34px;animation:float 6s ease-in-out infinite}
+.cat:nth-child(1){left:6%;top:22%}
+.cat:nth-child(2){right:8%;top:42%}
+.cat:nth-child(3){left:45%;bottom:18%}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
 
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Poppins',sans-serif;
-      background:linear-gradient(180deg,#ffe6f1,#fffafc);
-      min-height:100vh;
-      overflow:hidden;
-    }
-    .page{
-      display:none;
-      position:absolute;
-      inset:0;
-      padding:20px;
-      overflow-y:auto;
-      animation:fade .6s ease;
-    }
-    .page.active{display:block}
-    @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+/* cake */
+.cake{
+  width:220px;height:160px;margin:40px auto;position:relative
+}
+.layer{
+  width:100%;height:60px;background:#ffb3d1;border-radius:12px;
+  position:absolute;left:0;transition:.6s ease
+}
+.layer.top{top:0;background:#ffc7de}
+.layer.mid{top:55px}
+.layer.bot{top:110px;background:#ff9ec4}
+.slice-line{
+  position:absolute;top:0;left:50%;width:4px;height:100%;
+  background:#fff;border-radius:2px;opacity:.8
+}
+.cake.cut .layer.top{transform:translateX(-40px) rotate(-6deg)}
+.cake.cut .layer.mid{transform:translateX(40px) rotate(6deg)}
+.cake.cut .layer.bot{opacity:0}
 
-    .card{
-      max-width:420px;
-      margin:40px auto;
-      background:#fff;
-      border-radius:24px;
-      padding:25px;
-      box-shadow:0 15px 40px rgba(255,105,180,.25);
-      text-align:center;
-    }
+/* sparkles */
+.sparkle{position:fixed;font-size:18px;animation:spark 1s ease forwards}
+@keyframes spark{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(2) translateY(-40px)}}
 
-    h1,h2{
-      font-family:'Pacifico',cursive;
-      color:#ff4f9a;
-      margin-bottom:10px;
-    }
-    p{color:#555;line-height:1.6}
+/* envelope */
+.envelope{
+  width:220px;height:140px;margin:40px auto;position:relative;
+  background:#ffc1d6;border-radius:12px;cursor:pointer
+}
+.envelope .flap{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:#ff9ec4;
+  clip-path:polygon(0 0,100% 0,50% 55%);
+  transform-origin:top;transition:.8s ease
+}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope .heart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px}
 
-    .btn{
-      margin-top:20px;
-      background:linear-gradient(135deg,#ff4f9a,#ff8ccf);
-      color:white;
-      border:none;
-      border-radius:999px;
-      padding:14px 28px;
-      font-size:16px;
-      cursor:pointer;
-      box-shadow:0 8px 20px rgba(255,79,154,.4);
-    }
+.letter-box{
+  max-width:340px;margin:20px auto;padding:20px;
+  background:#fff;border-radius:18px;
+  box-shadow:0 10px 30px rgba(255,95,162,.25);
+  animation:slideUp .8s ease forwards
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 
-    /* Cake */
-    .cake-wrap{margin:30px auto;position:relative;width:260px;height:200px}
-    .cake{
-      position:absolute;bottom:0;width:100%;height:130px;
-      background:linear-gradient(#ffd1e8,#ffb6d5);
-      border-radius:0 0 20px 20px;
-      box-shadow:inset 0 -20px 0 #d67aa8;
-    }
-    .icing{
-      position:absolute;top:0;width:100%;height:40px;
-      background:#fff0f7;border-radius:20px 20px 10px 10px;
-    }
-    .candle{position:absolute;top:-50px;left:50%;transform:translateX(-50%);
-      width:16px;height:50px;background:#ff4f9a;border-radius:6px}
-    .flame{width:14px;height:14px;background:orange;border-radius:50%;position:absolute;top:-14px;left:1px;animation:flicker .4s infinite alternate}
-    @keyframes flicker{from{transform:scale(1)}to{transform:scale(1.2)}}
-
-    canvas{position:absolute;inset:0}
-
-    /* Letter */
-    .letter{background:#fff;border-radius:18px;padding:20px;text-align:left}
-    .letter h3{color:#ff4f9a;font-family:'Pacifico',cursive;margin-bottom:10px}
-
-    /* Envelope */
-    .envelope{width:260px;height:160px;margin:30px auto;position:relative;cursor:pointer}
-    .env-back,.env-front{position:absolute;width:100%;height:100%;border-radius:12px}
-    .env-back{background:#ffd1e8}
-    .env-front{background:#ffb6d5;clip-path:polygon(0 0,100% 0,50% 60%)}
-
-  </style>
+.final-pic{
+  width:80%;max-width:280px;margin:25px auto 0;
+  border-radius:22px;
+  box-shadow:0 12px 35px rgba(255,95,162,.45)
+}
+</style>
 </head>
 <body>
 
-<!-- PAGE 1 -->
-<div class="page active" id="p1">
-  <div class="card">
-    <h1>Happy Birthday, Beautiful 🎂</h1>
-    <p>Today is all about celebrating the most amazing person in my world.</p>
-    <p><b>Sonika</b> — my <b>Sanuu</b> 💖<br>Born on <b>February 16</b>.</p>
-    <button class="btn" onclick="go(2)">Let's Gooo 💕</button>
-  </div>
+<div class="cats">
+  <div class="cat">🐱</div>
+  <div class="cat">🐱</div>
+  <div class="cat">🐱</div>
 </div>
 
-<!-- PAGE 2 CAKE -->
-<div class="page" id="p2">
-  <div class="card">
-    <h2>It's Cake Time 🎉</h2>
-    <p>Slice the cake smoothly, birthday girl!</p>
-
-    <div class="cake-wrap">
-      <div class="cake">
-        <div class="icing"></div>
-        <div class="candle"><div class="flame"></div></div>
-      </div>
-      <canvas id="cut"></canvas>
-    </div>
-
-    <p id="progress">Cutting Progress: 0%</p>
-    <button class="btn" id="nextCake" style="display:none" onclick="go(3)">Perfect Cut ✨</button>
-  </div>
-</div>
-
-<!-- PAGE 3 WISH -->
-<div class="page" id="p3">
-  <div class="card">
-    <h2>Time to Make a Wish ✨</h2>
-    <p>Close your eyes and make a birthday wish, babyyyy 😘</p>
-    <button class="btn" onclick="go(4)">I Made My Wish 🌸</button>
-  </div>
-</div>
-
-<!-- PAGE 4 LETTER -->
-<div class="page" id="p4">
-  <div class="card">
-    <h2>A Birthday Love Letter 💌</h2>
-    <div class="letter">
-      <h3>My kuchupuchu birthday girl,</h3>
-      <p>
-        Today marks another year of your incredible existence, and I couldn’t be more grateful to celebrate it with you.
-        You bring so much joy, laughter, and love into this world — and into my life.
-      </p>
-      <p>
-        May this new year bring you everything your heart desires and more joy than you can imagine.
-      </p>
-      <p style="color:#ff4f9a"><b>Happy Birthday, mylove. You deserve the world and so much more.</b> 🎂✨</p>
-      <p style="text-align:right">Always yours 💖</p>
-    </div>
-    <button class="btn" onclick="go(5)">Seal the Letter ☺️</button>
-  </div>
-</div>
-
-<!-- PAGE 5 ENVELOPE -->
-<div class="page" id="p5">
-  <div class="card">
-    <h2>Final Birthday Letter 🎀</h2>
-    <p>A special message sealed with love</p>
-    <div class="envelope" onclick="alert('Happy Birthday Sanuu 💕 I love you endlessly.🛐')">
-      <div class="env-back"></div>
-      <div class="env-front"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-function go(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('p'+n).classList.add('active');
-}
-
-// cake slicing
-const canvas=document.getElementById('cut');
-const ctx=canvas.getContext('2d');
-canvas.width=260;canvas.height=200;
-let drawing=false,percent=0;
-canvas.addEventListener('touchstart',()=>drawing=true);
-canvas.addEventListener('touchend',()=>drawing=false);
-canvas.addEventListener('touchmove',e=>{
-  if(!drawing)return;
-  percent=Math.min(100,percent+1);
-  document.getElementById('progress').innerText='Cutting Progress: '+percent+'%';
-  ctx.strokeStyle='rgba(255,79,154,.6)';ctx.lineWidth=4;
-  ctx.lineTo(e.touches[0].clientX-50,e.touches[0].clientY-200);
-  ctx.stroke();
-  if(percent>=100)document.getElementById('nextCake').style.display='inline-block';
-});
-</script>
-
-<!-- Background Music -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- PAGE 1 -->
+<div id="p1" class="page active">
+  <h1>Happy Birthday Sanuu 🎂</h1>
+  <p>Tap to begin your surprise</p><br>
+  <button onclick="nextPage(2)">Start 💖</button>
+</div>
+
+<!-- PAGE 2 CAKE -->
+<div id="p2" class="page">
+  <h1>Cut the Cake 🎂</h1>
+  <p>Tap the cake to cut it</p>
+  <div class="cake" onclick="cutCake()" id="cake">
+    <div class="layer top"></div>
+    <div class="layer mid"></div>
+    <div class="layer bot"></div>
+    <div class="slice-line"></div>
+  </div>
+</div>
+
+<!-- PAGE 3 LETTER -->
+<div id="p3" class="page">
+  <h1>A Letter For You 💌</h1>
+  <p>Tap the envelope to open it</p>
+  <div class="envelope" onclick="openEnvelope()" id="env">
+    <div class="flap"></div>
+    <div class="heart">💖</div>
+  </div>
+  <div id="letter" style="display:none">
+    <div class="letter-box">
+      <p>
+        My dearest Sanuu,<br><br>
+        From the moment you came into my life, everything became warmer and brighter.
+        On this special day, Feb 16, I just want you to know how deeply loved you are.
+        You are my comfort, my happiness, and my forever.
+        <br><br>Happy Birthday, my love 💕
+      </p>
+    </div>
+    <img src="sanuu.jpg" alt="Sanuu" class="final-pic" onerror="this.style.display='none'">
+  </div>
+</div>
+
 <script>
-// autoplay music after first interaction
+// music
 let musicStarted=false;
 document.body.addEventListener('click',()=>{
-  if(!musicStarted){
-    document.getElementById('bgMusic').play();
-    musicStarted=true;
-  }
+ if(!musicStarted){document.getElementById('bgMusic').play();musicStarted=true}
 },{once:true});
+
+function nextPage(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('p'+n).classList.add('active');
+}
+
+// cake cut
+function cutCake(){
+ const cake=document.getElementById('cake');
+ if(cake.classList.contains('cut')) return;
+ cake.classList.add('cut');
+ sparkles();
+ setTimeout(()=>nextPage(3),900);
+}
+
+// envelope
+function openEnvelope(){
+ const env=document.getElementById('env');
+ if(env.classList.contains('open')) return;
+ env.classList.add('open');
+ sparkles();
+ setTimeout(()=>document.getElementById('letter').style.display='block',700);
+}
+
+// sparkles
+function sparkles(){
+ for(let i=0;i<14;i++){
+  const s=document.createElement('div');
+  s.className='sparkle';
+  s.textContent='✨';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1000);
+ }
+}
 </script>
 </body>
 </html>
