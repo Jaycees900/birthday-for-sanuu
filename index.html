@@ -1,97 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>For My Sanuu 💗</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,#ffd6e8,#fff);
+  background:linear-gradient(180deg,#ffe0ec,#fff);
   color:#4a2c3a;
   overflow:hidden;
 }
+
 section{
-  height:100vh;
-  width:100%;
+  position:absolute;
+  inset:0;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:20px;
-  position:absolute;
-  top:0;
-  left:0;
+  padding:24px;
 }
+
 h1{
   font-family:'Playfair Display',serif;
-  font-size:2.2rem;
-  margin-bottom:20px;
+  margin-bottom:16px;
+  text-align:center;
 }
+
 button{
-  padding:14px 28px;
+  margin-top:24px;
+  padding:14px 30px;
   border:none;
   border-radius:30px;
   background:#ff7aa2;
-  color:white;
+  color:#fff;
   font-size:1rem;
   cursor:pointer;
 }
+
 button:disabled{opacity:.5}
 
-#cake{
-  width:220px;
-  height:160px;
-  background:#ffb3c6;
-  border-radius:0 0 30px 30px;
+/* ---------- CAKE ---------- */
+#cakeWrap{
+  width:260px;
+  height:260px;
   position:relative;
-  overflow:hidden;
 }
-#cake::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;
-  width:100%;height:40px;
-  background:#fff;
-}
-.slice{
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  background:#ff9eb8;
-}
-#left{left:0}
-#right{right:0}
 
-.sparkle{
-  position:absolute;
-  width:6px;height:6px;
-  background:white;
-  border-radius:50%;
-  opacity:0;
+svg{width:100%;height:100%}
+
+#slice{
+  transform-origin:130px 130px;
+}
+
+/* ---------- LETTER CARD ---------- */
+#card{
+  max-width:680px;
+  background:#fffdf8;
+  border-radius:24px;
+  padding:32px 28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.08);
+}
+
+#card h2{
+  font-family:'Playfair Display',serif;
+  color:#ff7aa2;
+  text-align:center;
+  margin-bottom:6px;
+}
+
+#subtitle{
+  text-align:center;
+  font-size:.9rem;
+  opacity:.7;
+  margin-bottom:22px;
 }
 
 #letter{
-  max-width:600px;
-  text-align:center;
-  line-height:1.8;
+  font-family:'Pacifico',cursive;
   font-size:1.05rem;
+  line-height:1.9;
+  color:#5a3a46;
+  white-space:pre-wrap;
 }
 
+/* ---------- PHOTO PAGE ---------- */
 #photo{
-  width:240px;
-  height:320px;
-  border-radius:20px;
+  width:260px;
+  height:340px;
+  border-radius:22px;
   background:url('her.jpg') center/cover no-repeat;
-  box-shadow:0 0 40px rgba(255,122,162,.5);
+  box-shadow:0 0 50px rgba(255,122,162,.45);
   opacity:0;
-  transform:scale(.9);
+  transform:scale(.92);
+}
+
+#finalText{
+  max-width:700px;
+  text-align:center;
+  line-height:1.8;
+  margin-top:24px;
 }
 </style>
 </head>
@@ -100,30 +115,59 @@ button:disabled{opacity:.5}
 
 <audio id="music" src="music.mp3" loop></audio>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 : CAKE -->
 <section id="page1">
   <h1>For my Sanuu 💗</h1>
-  <div id="cake">
-    <div id="left" class="slice"></div>
-    <div id="right" class="slice"></div>
+
+  <div id="cakeWrap">
+    <svg viewBox="0 0 260 260">
+      <!-- cake base -->
+      <circle cx="130" cy="140" r="90" fill="#ffb6c9"/>
+      <circle cx="130" cy="120" r="90" fill="#ffd6e3"/>
+      <circle cx="130" cy="110" r="90" fill="#fff"/>
+
+      <!-- slice -->
+      <g id="slice">
+        <path d="M130 110 L130 20 A90 90 0 0 1 200 70 Z" fill="#ff9db8"/>
+        <path d="M130 120 L130 30 A90 90 0 0 1 200 80 Z" fill="#ffd6e3"/>
+      </g>
+
+      <!-- strawberry -->
+      <circle cx="130" cy="35" r="10" fill="#ff4d6d"/>
+    </svg>
   </div>
-  <br>
+
   <button id="cutBtn">Cut the cake 🎂</button>
 </section>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 : LETTER -->
 <section id="page2" style="display:none">
-  <h1>From my heart</h1>
-  <div id="letter"></div>
+  <div id="card">
+    <h2>A Birthday Love Letter 💌</h2>
+    <div id="subtitle">From my heart to my Sanuu</div>
+    <div id="letter"></div>
+  </div>
 </section>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 : PHOTO -->
 <section id="page3" style="display:none">
-  <h1>Happy Birthday Sanuu 💕</h1>
+  <h1>Happy Birthday, Sanuu 💕</h1>
   <div id="photo"></div>
-  <p style="margin-top:20px;text-align:center">
-    16th February — the day my favorite person was born 🛐
-  </p>
+  <div id="finalText">
+    Today isn’t just your birthday —  
+    it’s a reminder of how grateful I am that **you exist**.
+
+    You bring warmth where there is silence,  
+    comfort where there is chaos,  
+    and love in ways that feel effortless and real.
+
+    I hope this year gives you everything you deserve —  
+    peace in your heart, happiness in your days,  
+    and endless reasons to smile.
+
+    **16th February** will always be special to me,  
+    because it’s the day the most beautiful soul was born.
+  </div>
 </section>
 
 <script>
@@ -135,57 +179,47 @@ cutBtn.onclick=()=>{
   music.volume=0.4;
   music.play();
 
-  gsap.to('#left',{x:-40,duration:2,ease:'power2.out'});
-  gsap.to('#right',{x:40,duration:2,ease:'power2.out'});
-
-  for(let i=0;i<20;i++){
-    let s=document.createElement('div');
-    s.className='sparkle';
-    document.body.appendChild(s);
-    gsap.set(s,{x:window.innerWidth/2,y:window.innerHeight/2});
-    gsap.to(s,{
-      x:'+='+(Math.random()*200-100),
-      y:'+='+(Math.random()*200-100),
-      opacity:1,
-      duration:1,
-      yoyo:true,
-      repeat:1
-    });
-  }
+  gsap.to('#slice',{
+    rotation:-18,
+    x:28,
+    y:-10,
+    duration:2.4,
+    ease:'power2.out'
+  });
 
   setTimeout(()=>{
-    document.getElementById('page1').style.display='none';
-    document.getElementById('page2').style.display='flex';
-    showLetter();
-  },2300);
+    page1.style.display='none';
+    page2.style.display='flex';
+    typeLetter();
+  },2600);
 };
 
-const text=`Sanuu,
-From the moment you came into my life,
-everything started feeling softer, warmer, brighter.
+const text=`My dearest Sanuu,
 
-You are my comfort, my smile,
-and the calm I didn’t know I needed.
+Another year of your beautiful existence begins today,
+and I can’t help but feel grateful that I get to celebrate *you*.
 
-This isn’t just a birthday surprise,
-it’s a small reminder of how deeply
-you are loved — every single day.`;
+You have a way of making ordinary moments feel special,
+and simply being around you makes life softer and warmer.
 
-function showLetter(){
+This letter is just a small piece of what I feel,
+but I hope you can sense the love behind every word.`;
+
+let i=0;
+function typeLetter(){
   const el=document.getElementById('letter');
-  let i=0;
   const interval=setInterval(()=>{
     el.textContent+=text[i];
     i++;
     if(i>=text.length){
       clearInterval(interval);
       setTimeout(()=>{
-        document.getElementById('page2').style.display='none';
-        document.getElementById('page3').style.display='flex';
+        page2.style.display='none';
+        page3.style.display='flex';
         gsap.to('#photo',{opacity:1,scale:1,duration:2,ease:'power2.out'});
-      },2000);
+      },2200);
     }
-  },40);
+  },38);
 }
 </script>
 
