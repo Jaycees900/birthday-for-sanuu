@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Sanuu 🎀</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#ffe6f1,#fffafc);
+      min-height:100vh;
+      overflow:hidden;
+    }
+    .page{
+      display:none;
+      position:absolute;
+      inset:0;
+      padding:20px;
+      overflow-y:auto;
+      animation:fade .6s ease;
+    }
+    .page.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+
+    .card{
+      max-width:420px;
+      margin:40px auto;
+      background:#fff;
+      border-radius:24px;
+      padding:25px;
+      box-shadow:0 15px 40px rgba(255,105,180,.25);
+      text-align:center;
+    }
+
+    h1,h2{
+      font-family:'Pacifico',cursive;
+      color:#ff4f9a;
+      margin-bottom:10px;
+    }
+    p{color:#555;line-height:1.6}
+
+    .btn{
+      margin-top:20px;
+      background:linear-gradient(135deg,#ff4f9a,#ff8ccf);
+      color:white;
+      border:none;
+      border-radius:999px;
+      padding:14px 28px;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(255,79,154,.4);
+    }
+
+    /* Cake */
+    .cake-wrap{margin:30px auto;position:relative;width:260px;height:200px}
+    .cake{
+      position:absolute;bottom:0;width:100%;height:130px;
+      background:linear-gradient(#ffd1e8,#ffb6d5);
+      border-radius:0 0 20px 20px;
+      box-shadow:inset 0 -20px 0 #d67aa8;
+    }
+    .icing{
+      position:absolute;top:0;width:100%;height:40px;
+      background:#fff0f7;border-radius:20px 20px 10px 10px;
+    }
+    .candle{position:absolute;top:-50px;left:50%;transform:translateX(-50%);
+      width:16px;height:50px;background:#ff4f9a;border-radius:6px}
+    .flame{width:14px;height:14px;background:orange;border-radius:50%;position:absolute;top:-14px;left:1px;animation:flicker .4s infinite alternate}
+    @keyframes flicker{from{transform:scale(1)}to{transform:scale(1.2)}}
+
+    canvas{position:absolute;inset:0}
+
+    /* Letter */
+    .letter{background:#fff;border-radius:18px;padding:20px;text-align:left}
+    .letter h3{color:#ff4f9a;font-family:'Pacifico',cursive;margin-bottom:10px}
+
+    /* Envelope */
+    .envelope{width:260px;height:160px;margin:30px auto;position:relative;cursor:pointer}
+    .env-back,.env-front{position:absolute;width:100%;height:100%;border-radius:12px}
+    .env-back{background:#ffd1e8}
+    .env-front{background:#ffb6d5;clip-path:polygon(0 0,100% 0,50% 60%)}
+
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="card">
+    <h1>Happy Birthday, Beautiful 🎂</h1>
+    <p>Today is all about celebrating the most amazing person in my world.</p>
+    <p><b>Sonika</b> — my <b>Sanuu</b> 💖<br>Born on <b>February 16</b>.</p>
+    <button class="btn" onclick="go(2)">Let's Gooo 💕</button>
+  </div>
+</div>
+
+<!-- PAGE 2 CAKE -->
+<div class="page" id="p2">
+  <div class="card">
+    <h2>It's Cake Time 🎉</h2>
+    <p>Slice the cake smoothly, birthday girl!</p>
+
+    <div class="cake-wrap">
+      <div class="cake">
+        <div class="icing"></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <canvas id="cut"></canvas>
+    </div>
+
+    <p id="progress">Cutting Progress: 0%</p>
+    <button class="btn" id="nextCake" style="display:none" onclick="go(3)">Perfect Cut ✨</button>
+  </div>
+</div>
+
+<!-- PAGE 3 WISH -->
+<div class="page" id="p3">
+  <div class="card">
+    <h2>Time to Make a Wish ✨</h2>
+    <p>Close your eyes and make a birthday wish, babyyyy 😘</p>
+    <button class="btn" onclick="go(4)">I Made My Wish 🌸</button>
+  </div>
+</div>
+
+<!-- PAGE 4 LETTER -->
+<div class="page" id="p4">
+  <div class="card">
+    <h2>A Birthday Love Letter 💌</h2>
+    <div class="letter">
+      <h3>My kuchupuchu birthday girl,</h3>
+      <p>
+        Today marks another year of your incredible existence, and I couldn’t be more grateful to celebrate it with you.
+        You bring so much joy, laughter, and love into this world — and into my life.
+      </p>
+      <p>
+        May this new year bring you everything your heart desires and more joy than you can imagine.
+      </p>
+      <p style="color:#ff4f9a"><b>Happy Birthday, mylove. You deserve the world and so much more.</b> 🎂✨</p>
+      <p style="text-align:right">Always yours 💖</p>
+    </div>
+    <button class="btn" onclick="go(5)">Seal the Letter ☺️</button>
+  </div>
+</div>
+
+<!-- PAGE 5 ENVELOPE -->
+<div class="page" id="p5">
+  <div class="card">
+    <h2>Final Birthday Letter 🎀</h2>
+    <p>A special message sealed with love</p>
+    <div class="envelope" onclick="alert('Happy Birthday Sanuu 💕 I love you endlessly.🛐')">
+      <div class="env-back"></div>
+      <div class="env-front"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+// cake slicing
+const canvas=document.getElementById('cut');
+const ctx=canvas.getContext('2d');
+canvas.width=260;canvas.height=200;
+let drawing=false,percent=0;
+canvas.addEventListener('touchstart',()=>drawing=true);
+canvas.addEventListener('touchend',()=>drawing=false);
+canvas.addEventListener('touchmove',e=>{
+  if(!drawing)return;
+  percent=Math.min(100,percent+1);
+  document.getElementById('progress').innerText='Cutting Progress: '+percent+'%';
+  ctx.strokeStyle='rgba(255,79,154,.6)';ctx.lineWidth=4;
+  ctx.lineTo(e.touches[0].clientX-50,e.touches[0].clientY-200);
+  ctx.stroke();
+  if(percent>=100)document.getElementById('nextCake').style.display='inline-block';
+});
+</script>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// autoplay music after first interaction
+let musicStarted=false;
+document.body.addEventListener('click',()=>{
+  if(!musicStarted){
+    document.getElementById('bgMusic').play();
+    musicStarted=true;
+  }
+},{once:true});
+</script>
+</body>
+</html>
